@@ -17,7 +17,7 @@ products = CSV.parse(product_data, headers: true)
 puts "Loaded #{products.size} rows from the CSV file."
 
 products.each do |p|
-  category = Category.find_or_create_by(name: p["Category"])
+  category = Category.find_or_create_by(category_name: p["Category"])
 
   next unless category&.valid?
 
