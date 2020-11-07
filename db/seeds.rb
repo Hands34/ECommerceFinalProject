@@ -8,6 +8,9 @@
 require "csv"
 
 # Remove all data to start.
+Product.delete_all
+Category.delete_all
+puts "Cleared all data."
 
 filename = Rails.root.join("db/ecommerce_products.csv")
 puts "Loading Product Data From: #{filename}"
@@ -19,19 +22,25 @@ puts "Loaded #{products.size} rows from the CSV file."
 products.each do |p|
   category = Category.find_or_create_by(category_name: p["Category"])
 
-  next unless category&.valid?
+  if category&.valid?
+    # Create the product
+    product = category.products.create(
+      product_name: p["Name"],
+      description:  p["Description"],
+      price:        p["Price"],
+      company:      p["Company"]
+    )
 
-  # Create the product
-  product = category.products.create(
-    product_name: p["Name"],
-    description:  p["Description"],
-    price:        p["Price"],
-    company:      p["Company"]
-  )
+    unless product.valid?
+      puts "Invalid Product #{p['Name']}"
+      puts product.errors.messages
+      next
+    end
 
-  unless product.valid?
-    puts "Invalid Product #{p['Name']}"
-    next
+  else
+    puts "Invalid category #{p['Category']} for product #{p['Name']}."
+    puts category.errors.messages
+
   end
 end
 
