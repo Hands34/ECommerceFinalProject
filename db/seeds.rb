@@ -12,6 +12,8 @@ Product.delete_all
 Category.delete_all
 puts "Cleared all data."
 
+puts Product.inspect
+
 filename = Rails.root.join("db/ecommerce_products.csv")
 puts "Loading Product Data From: #{filename}"
 product_data = File.read(filename)
