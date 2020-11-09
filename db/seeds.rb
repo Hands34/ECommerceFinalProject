@@ -16,7 +16,7 @@ puts Product.inspect
 
 filename = Rails.root.join("db/ecommerce_products.csv")
 puts "Loading Product Data From: #{filename}"
-product_data = File.read(filename)
+product_data = File.read(filename, encoding: "bom|utf-8")
 products = CSV.parse(product_data, headers: true)
 
 puts "Loaded #{products.size} rows from the CSV file."
