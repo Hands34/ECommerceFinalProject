@@ -1,6 +1,10 @@
 <h1>Products#index</h1>
 <ol class="ml-5">
   <% @products.each do |product| %>
-    <li><%= product.product_name %> belongs to <%= product.category.category_name %></li>
+    <li>
+    <%= link_to product.product_name, product %>
+    belongs to <strong>Category:</strong> <%= product.category.category_name %>
+    and was produced by <strong>Company:</strong> <%= product.company %>
+    </li>
   <% end %>
 </ol>
