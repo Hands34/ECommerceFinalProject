@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>HalfCut Angling Store</title>
+    <title><%= yield(:html_title) if content_for?(:html_title) %> HalfCut Angling Store</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
