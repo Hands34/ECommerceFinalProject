@@ -1,5 +1,5 @@
-<h1>Products#index</h1>
-<ol class="ml-5">
+<h1 class="title is-3">Available Products</h1>
+<ul class="ml-5">
   <% @products.each do |product| %>
     <li>
     <%= link_to product.product_name, product %>
@@ -7,4 +7,4 @@
     and was produced by <strong>Company:</strong> <%= product.company %>
     </li>
   <% end %>
-</ol>
+</ul>

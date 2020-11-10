@@ -1,2 +1,11 @@
-<h1>Categories#show</h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+<h2 class="title is-2"><%= @category.category_name %></h2>
+
+<p>
+  This category has <%= @category.products.count %> products in it.
+</p>
+
+<ul>
+  <% @category.products.each do |product| %>
+    <li><%= link_to product.product_name, product %></li>
+  <% end %>
+</ul>
