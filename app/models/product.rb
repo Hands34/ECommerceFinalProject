@@ -5,8 +5,4 @@ class Product < ApplicationRecord
   validates :product_name, :price, :description, presence: true
 
   validates :price, numericality: true
-
-  # def self.search params
-  #   products
-  # end
 end
