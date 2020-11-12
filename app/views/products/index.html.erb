@@ -1,10 +1,7 @@
 <h1 class="title is-3">Available Products</h1>
-<ul class="ml-5">
-  <% @products.each do |product| %>
-    <li>
-    <%= link_to product.product_name, product %>
-    belongs to <strong>Category:</strong> <%= product.category.category_name %>
-    and was produced by <strong>Company:</strong> <%= product.company %>
-    </li>
-  <% end %>
-</ul>
+<div>
+  <ul class="ml-5">
+    <%= render @products %>
+  </ul>
+  <%= paginate(@products)%>
+</div>

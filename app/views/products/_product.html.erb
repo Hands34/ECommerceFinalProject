@@ -1,0 +1,28 @@
+<div class="column">
+  <div class="card">
+     <%# <% if product.image.present? %>
+      <%# <div class="card-image"> %>
+      <%# <figure class="image is-128x128"> %>
+        <%# <%= image_tag product.image%>
+      <%# </figure>
+      </div>
+    <% end %>
+    <div class="card-content">
+      <p class="title mt-5">
+          <%= link_to product.product_name, product %>
+      </p>
+      <p>Description: <%= product.description %></p>
+    </div>
+    <footer class="card-footer">
+      <p class="card-footer-item">
+        Price <br><%= product.price %>
+      </p>
+      <p class="card-footer-item">
+        Company: <br><%= product.company %>
+      </p>
+      <p class="card-footer-item">
+        Category: <br><%= product.category.category_name %>
+      </p>
+    </footer>
+  </div>
+</div>
