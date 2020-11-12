@@ -21,7 +21,7 @@
         Company: <br><%= product.company %>
       </p>
       <p class="card-footer-item">
-        Category: <br><%= product.category.category_name %>
+        Category: <br><%= link_to product.category.category_name, product.category %>
       </p>
     </footer>
   </div>

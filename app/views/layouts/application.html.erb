@@ -21,6 +21,9 @@
           <div class="control is-expanded">
             <%= text_field_tag(:keywords, nil, class: "input", placeholder: 'Search For Products') %>
           </div>
+          <div class="select is-primary">
+            <%= select_tag("category_id", options_from_collection_for_select(categories_for_select, "id", "category_name"), placeholder: 'All')%>
+          </div>
           <div class="control">
             <%= submit_tag("Search", class: "button is-primary") %>
           </div>
