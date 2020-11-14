@@ -10,6 +10,7 @@ require "csv"
 # Remove all data to start.
 Product.delete_all
 Category.delete_all
+AdminUser.delete_all
 puts "Cleared all data."
 
 puts Product.inspect
@@ -48,4 +49,6 @@ end
 
 puts "Created #{Category.count} Categories."
 puts "Created #{Product.count} Products."
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+if Rails.env.development?
+  AdminUser.create!(email: "admin@example.com", password: "password", password_confirmation: "password")
+end
