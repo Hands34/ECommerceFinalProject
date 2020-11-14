@@ -5,6 +5,17 @@ ActiveAdmin.register Product do
   # Uncomment all parameters which should be permitted for assignment
   #
   permit_params :product_name, :price, :description, :category_id, :company, :image
+
+  # DSL Domain Specific Language
+  # Formtastic Gem
+  form do |f|
+    f.semantic_errors # shows errors on :base
+    f.inputs          # builds an input field for every attribute
+    f.inputs do
+      f.input :image, as: :file, hint: f.object.image.present? ? image_tag(f.object.image) : ""
+    end
+    f.actions         # adds the 'Submit' and 'Cancel' buttons
+  end
   #
   # or
   #

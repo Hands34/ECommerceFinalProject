@@ -1,10 +1,10 @@
 <div class="column">
   <div class="card">
-     <%# <% if product.image.present? %>
-      <%# <div class="card-image"> %>
-      <%# <figure class="image is-128x128"> %>
-        <%# <%= image_tag product.image%>
-      <%# </figure>
+    <% if product.image.present? %>
+       <div class="card-image">
+        <figure class="image is-128x128">
+         <%= image_tag product.image %>
+        </figure>
       </div>
     <% end %>
     <div class="card-content">
