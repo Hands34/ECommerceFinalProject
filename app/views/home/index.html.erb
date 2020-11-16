@@ -1,5 +1,17 @@
+<div class="container">
+  <div class="notification is-primary">
+    <ul class="ml-5">
+      <% @categories.each do |category| %>
+        <li>
+          <strong>
+            <%= link_to category.category_name, category %>
+          </strong>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
 <div class="columns">
-
   <div class="column">
     <h2 class="title is-4">Products</h2>
     <ol class="ml-5">
@@ -16,24 +28,4 @@
       </strong>
     </p>
   </div>
-
-  <div class="column">
-    <h2 class = "title is-4">Categories</h2>
-    <ol class="ml-5">
-      <% @categories.each do |category| %>
-        <li>
-          <%= link_to category.category_name, category %>
-          <%# <em>(<%= pluralize category.player_count, "Player" )</em> %>
-        </li>
-      <% end %>
-    </ol>
-    <p class="mt-4">
-      <strong>
-        <%= link_to '🏀 See All Categories 🏀', categories_path %>
-      </strong>
-    </p>
-  </div>
-
-
-
 </div>
