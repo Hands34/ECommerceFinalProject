@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
   def index
     @products = Product.includes(:category).order("product_name").page(params[:page])
+    @recently_updated = Product.includes(:category).order("created_at")
+    @recently_created = Product.includes(:category).order("updated_at")
   end
   # def index
   #   @products = Product.search(params[:search]).page(params[:page])

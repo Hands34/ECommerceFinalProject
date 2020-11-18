@@ -1,7 +1,5 @@
 <h2 class="title is-2"> Categories </h2>
 
 <ul>
-  <% @categories.each do |category| %>
-    <li><%= link_to category.category_name, category %></li>
-  <% end %>
+  <%= render @categories %>
 </ul>

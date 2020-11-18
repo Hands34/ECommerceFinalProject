@@ -1,8 +1,8 @@
 <div class="container">
   <div class="notification is-primary">
-    <ul class="ml-5">
+    <ul class="ml-5 is-flex">
       <% @categories.each do |category| %>
-        <li>
+        <li class="mx-5">
           <strong>
             <%= link_to category.category_name, category %>
           </strong>
@@ -13,19 +13,18 @@
 </div>
 <div class="columns">
   <div class="column">
-    <h2 class="title is-4">Products</h2>
-    <ol class="ml-5">
-      <% @products.each do |product| %>
-        <li>
-          <%= link_to product.product_name, product %>
-          <em>(<%= product.category.category_name %>)</em>
-        </li>
-      <% end %>
-    </ol>
-    <p class="mt-4">
-      <strong>
-        <%= link_to '🏀 See All Products 🏀', products_path %>
-      </strong>
-    </p>
+    <h2 class="title is-4">Featured Products</h2>
+      <div class="select">
+        <select>
+          <option>Unfiltered</option>
+          <option>Recently Created</option>
+          <option>Recently Updated</option>
+        </select>
+      </div>
+      <div>
+        <ul class="ml-5">
+          <%= render @products %>
+        </ul>
+      </div>
   </div>
 </div>
