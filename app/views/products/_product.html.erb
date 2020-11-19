@@ -15,7 +15,7 @@
     </div>
     <footer class="card-footer">
       <p class="card-footer-item">
-        Price <br><%= product.price %>
+        Price: <br> <%= number_to_currency product.price / 100.0 %>
       </p>
       <p class="card-footer-item">
         Company: <br><%= product.company %>
