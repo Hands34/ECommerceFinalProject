@@ -2,7 +2,9 @@
   <div class="card">
     <div class="card-content">
       <p class="title mt-5">
-          <%= link_to category.category_name, category %>
+            <% @category.products.each do |product| %>
+              <li><%= link_to product.product_name, product %></li>
+            <% end %>
       </p>
   </div>
 </div>
