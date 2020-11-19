@@ -16,7 +16,8 @@
   <body>
   <section class="section">
     <div class="container">
-
+    <header class="header">
+      <h1 class="title is-1"><%= link_to 'HalfCut Angling Store', root_path %></h1>
       <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
           <li><a><%= link_to 'Home', root_path %> </a></li>
@@ -25,8 +26,8 @@
           <li class="is-active"><a aria-current="page">Breadcrumb</a></li>
         </ul>
       </nav>
-
-    <h1 class="title is-1"><%= link_to 'HalfCut Angling Store', root_path %></h1>
+      <%= debug session[:shopping_cart] %>
+    </header>
           <%= form_with(url: search_products_path, method: :get, local: true) do %>
         <div class="field is-grouped mb-5">
           <div class="control is-expanded">
@@ -39,6 +40,12 @@
             <%= submit_tag("Search", class: "button is-primary") %>
           </div>
         </div>
+      <% end %>
+      <% if flash[:notice] %>
+        <p><%= flash[:notice]%></p>
+      <% end %>
+      <% if flash[:delete_notice] %>
+        <p><%= flash[:delete_notice]%></p>
       <% end %>
       <%= yield %>
       <%= render partial: 'shared/footer' %>

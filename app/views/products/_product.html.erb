@@ -1,28 +1,20 @@
-<div class="column">
-  <div class="card">
+  <aside>
     <% if product.image.present? %>
-       <div class="card-image">
-        <figure class="image is-128x128">
-         <%= image_tag product.image %>
-        </figure>
-      </div>
+      <p><%= image_tag product.image  %></p>
     <% end %>
-    <div class="card-content">
-      <p class="title mt-5">
-          <%= link_to product.product_name, product %>
-      </p>
-      <p>Description: <%= product.description %></p>
-    </div>
-    <footer class="card-footer">
-      <p class="card-footer-item">
-        Price: <br> <%= number_to_currency product.price / 100.0 %>
-      </p>
-      <p class="card-footer-item">
-        Company: <br><%= product.company %>
-      </p>
-      <p class="card-footer-item">
-        Category: <br><%= link_to product.category.category_name, product.category %>
-      </p>
-    </footer>
-  </div>
-</div>
+    <h3><strong><%= product.product_name %></strong></h3>
+    <p><strong>Price:</strong> <%= number_to_currency product.price / 100.0 %></p>
+
+    <p><%= product.description %></p>
+
+    <% if cart.include?(product) %>
+      <%= button_to cart_path(product), method: :delete do %>
+        ❌Remove From Cart
+      <% end %>
+    <% else %>
+      <%= form_with url: cart_index_path, method: :post do %>
+      <%= hidden_field_tag(:id, product.id) %>
+      <%= button_tag '➕Add to Cart' %>
+      <% end %>
+    <% end %>
+  </aside>

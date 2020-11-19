@@ -3,7 +3,10 @@ class CartController < ApplicationController
   # Add params[:id] product to the cart
   def create
     id = params[:id].to_i
-    session[:cart] << id unless session[:cart].include?(id)
+    unless session[:shopping_cart].include?(id)
+      session[:shopping_cart] << id
+      flash[:notice] = "Added Item to Cart."
+    end
     redirect_to root_path
   end
   # Automagically load the associated view: app/cart/create.html.erb
@@ -12,7 +15,8 @@ class CartController < ApplicationController
   # Remove product from the cart
   def destroy
     id = params[:id].to_i
-    session[:cart].delete(id)
+    session[:shopping_cart].delete(id)
+    flash[:delete_notice] = "Removed Item from Cart."
     redirect_to root_path
   end
 end

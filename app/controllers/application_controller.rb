@@ -15,6 +15,6 @@ class ApplicationController < ActionController::Base
 
   def cart
     # Return a collection of Product objects based on the product ids in the shopping cart.
-    Product.find(params[:id])
+    Product.find(session[:shopping_cart])
   end
 end

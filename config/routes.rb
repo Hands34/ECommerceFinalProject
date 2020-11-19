@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'contact/index'
-  get 'about/index'
+  get "contact/index"
+  get "about/index"
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   get "home/index"
@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     end
   end
   resources :categories, only: %i[index show]
+  resources :cart, only: %i[create destroy]
   resources :searches
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: "home#index"

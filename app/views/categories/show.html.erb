@@ -6,5 +6,7 @@
 </p>
 
 <ul>
-  <%= render @category %>
+  <% @category.products.each do |product| %>
+    <li><%= link_to product.product_name, product %></li>
+  <% end %>
 </ul>
