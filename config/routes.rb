@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'checkout/index'
   devise_for :users
   get "contact/index"
   get "about/index"
