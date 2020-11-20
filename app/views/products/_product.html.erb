@@ -6,6 +6,8 @@
     <p><strong>Price:</strong> <%= number_to_currency product.price / 100.0 %></p>
 
     <p><%= product.description %></p>
+    <%# <%= simple_format truncate((h(product.description) + link_to("Read More", product_path(product))), length: 400, separator: ' ') %>
+    <%# <%= product.description %>
 
     <% if cart.include?(product) %>
       <%= button_to cart_path(product), method: :delete do %>
