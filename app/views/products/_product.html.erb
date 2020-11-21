@@ -2,7 +2,7 @@
     <% if product.image.present? %>
       <p><%= image_tag product.image  %></p>
     <% end %>
-    <h3><strong><%= product.product_name %></strong></h3>
+    <h3><strong><%= link_to product.product_name, product %></strong></h3>
     <p><strong>Price:</strong> <%= number_to_currency product.price / 100.0 %></p>
 
     <p><%= product.description %></p>

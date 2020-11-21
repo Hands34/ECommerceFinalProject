@@ -1,8 +1,19 @@
 class ApplicationController < ActionController::Base
   before_action :initialize_session
-  # before_action :add_breadcrumb
+  before_action :set_breadcrumbs
   helper_method :cart
   helper_method :categories_for_select
+
+  def add_breadcrumb(label, path = nil)
+    @breadcrumbs << {
+      label: label,
+      path:  path
+    }
+  end
+
+  def set_breadcrumbs
+    @breadcrumbs = []
+  end
 
   def categories_for_select
     categories = [Category.new(category_name: "All", id: -99), *Category.all]
