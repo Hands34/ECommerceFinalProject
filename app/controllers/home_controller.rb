@@ -8,4 +8,8 @@ class HomeController < ApplicationController
 
     # @companies = Company.all
   end
+
+  # def add_breadcrumb
+  #   add_breadcrumb "Home", :root_path
+  # end
 end

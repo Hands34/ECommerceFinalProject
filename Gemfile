@@ -32,6 +32,8 @@ gem 'kaminari-bootstrap'
 gem 'activeadmin' # Admin Dashboard as a rails engine
 gem 'devise'      # Username and password authentication library
 
+gem 'breadcrumbs_on_rails'
+
 # Reduces boot times through caching; required in config/boot.rb
 #gem 'bootsnap', '>= 1.4.2', require: false
 

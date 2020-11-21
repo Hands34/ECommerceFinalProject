@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :initialize_session
+  # before_action :add_breadcrumb
   helper_method :cart
   helper_method :categories_for_select
 
