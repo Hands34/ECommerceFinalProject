@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  get 'checkout/index'
+  scope "/checkout" do
+    post "create", to: "checkout#create", as: "checkout_create"
+    get "success", to: "checkout#success", as: "checkout_success"
+    get "cancel", to: "checkout#cancel", as: "checkout_cancel"
+  end
+
   devise_for :users
   get "contact/index"
   get "about/index"
