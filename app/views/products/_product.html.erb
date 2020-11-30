@@ -5,7 +5,8 @@
     <h3><strong><%= link_to product.product_name, product %></strong></h3>
     <p><strong>Price:</strong> <%= number_to_currency product.price / 100.0 %></p>
 
-    <p><%= product.description %></p>
+
+    <p><%= truncate(product.description, length: 100) %> <%= link_to "more", product %></p>
     <%# <%= simple_format truncate((h(product.description) + link_to("Read More", product_path(product))), length: 400, separator: ' ') %>
     <%# <%= product.description %>
 

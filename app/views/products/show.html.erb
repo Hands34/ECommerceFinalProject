@@ -1,2 +1,24 @@
 <% content_for(:html_title) { @product.product_name } %>
-<h1 class="title is-3"><%= render @product %></h1>
+  <div>
+    <% if @product.image.present? %>
+      <p><%= image_tag @product.image  %></p>
+    <% end %>
+    <h2><strong><%= link_to @product.product_name, @product %></strong></h2>
+    <p><strong>Price:</strong> <%= number_to_currency @product.price / 100.0 %></p>
+
+
+    <p><%= @product.description %></p>
+    <%# <%= simple_format truncate((h(product.description) + link_to("Read More", product_path(product))), length: 400, separator: ' ') %>
+    <%# <%= product.description %>
+
+    <% if cart.include?(@product) %>
+      <%= button_to cart_path(@product), method: :delete do %>
+        ❌Remove From Cart
+      <% end %>
+    <% else %>
+      <%= form_with url: cart_index_path, method: :post do %>
+      <%= hidden_field_tag(:id, @product.id) %>
+      <%= button_tag '➕Add to Cart' %>
+      <% end %>
+    <% end %>
+  </div>

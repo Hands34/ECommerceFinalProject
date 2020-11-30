@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :set_breadcrumbs
   helper_method :cart
   helper_method :categories_for_select
+  helper_method :provinces_for_select
 
   def add_breadcrumb(label, path = nil)
     @breadcrumbs << {
@@ -17,6 +18,10 @@ class ApplicationController < ActionController::Base
 
   def categories_for_select
     categories = [Category.new(category_name: "All", id: -99), *Category.all]
+  end
+
+  def provinces_for_select
+    provinces = [*Province.all]
   end
 
   private

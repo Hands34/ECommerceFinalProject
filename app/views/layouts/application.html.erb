@@ -32,7 +32,10 @@
                   </li>
                 <% end %>
 
-                  <%= button_tag 'Checkout' %>
+                  <%= button_to 'Checkout', checkout_create_path, method: :post, remote: true %>
+                <div class="select is-primary">
+                 <%= select_tag("province_id", options_from_collection_for_select(provinces_for_select, "id", "name"))%>
+                </div>
 
               </ul>
             <% end %>
@@ -80,7 +83,9 @@
       <% if alert %>
         <p class="alert"> <%= alert %></p>
       <% end %>
-      <%= yield %>
+      <section>
+        <%= yield %>
+      </section>
       <%= render partial: 'shared/footer' %>
     </div>
   </section>
