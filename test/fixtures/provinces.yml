@@ -2,8 +2,8 @@
 
 one:
   name: MyString
-  tax_rate: 1.5
+  tax_rate: 1
 
 two:
   name: MyString
-  tax_rate: 1.5
+  tax_rate: 1
