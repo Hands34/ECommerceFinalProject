@@ -31,3 +31,17 @@ form {
 nav ul li ul li a {
   display: inline;
 }
+
+section .product{
+  display: inline-flex;
+}
+
+section .cat{
+  display: flex;
+  text-align: center;
+}
+
+section .about{
+  display: flex;
+  text-align: center;
+}
