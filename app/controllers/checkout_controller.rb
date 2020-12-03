@@ -37,6 +37,12 @@ class CheckoutController < ApplicationController
       line_items:           line_items
     )
 
+    new_order = current_user.orders.create(total_price: sum, tax: sum * province.tax_rate,
+      status: "Incomplete", payment_id: @session.id)
+    logger.debug(new_order.errors.messages)
+
+    # new_order.
+
     respond_to do |format|
       format.js # render app/views/checkout/create.js.erb
     end
@@ -46,6 +52,8 @@ class CheckoutController < ApplicationController
     # We took the customers money
     @session = Stripe::Checkout::Session.retrieve(params[:session_id])
     @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
+
+    # new_order.status = "Completed" if @payment_intent == "paid"
   end
 
   def cancel

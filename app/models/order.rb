@@ -1,8 +1,8 @@
 class Order < ApplicationRecord
-  belongs_to :customer
+  belongs_to :user
   has_one :product_order
 
-  validates :total_price, :tax, :price, presence: true
+  validates :total_price, :tax, presence: true
 
-  validates :total_price, :tax, :price, numericality: { only_float: true }
+  validates :total_price, :tax, numericality: { only_float: true }
 end
