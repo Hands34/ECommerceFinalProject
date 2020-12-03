@@ -1,8 +1,11 @@
 class CheckoutController < ApplicationController
   # POST /checkout/create
+  # before_action :authenticate_user!
   # A product id will be in the params hash: params[:product_id]
   def create
     # Establish a connection with Stripe and then redirect user to the payment screen.
+    prov_id = params[:province_id]
+    province = Province.find(prov_id)
 
     line_items = session[:shopping_cart].map do |cart_item|
       product = Product.find(cart_item)
@@ -14,6 +17,16 @@ class CheckoutController < ApplicationController
         quantity:    1
       }
     end
+    sum = session[:shopping_cart].sum { |id| Product.find(id).price }
+    logger.debug("Sum is #{sum}")
+
+    line_items << {
+      name:     "HST",
+      amount:   sum * province.tax_rate / 100,
+      currency: "cad",
+      quantity: 1
+
+    }
 
     # establish a connection to Stripe using the stripe gem
 
@@ -31,9 +44,15 @@ class CheckoutController < ApplicationController
 
   def success
     # We took the customers money
+    @session = Stripe::Checkout::Session.retrieve(params[:session_id])
+    @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
   end
 
   def cancel
     # Something went wrong with the payment.
+  end
+
+  def invoice
+    @province = Province.all
   end
 end

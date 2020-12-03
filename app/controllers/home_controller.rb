@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   def index
     @products = Product.includes(:category)
                        .order("product_name")
-                       .limit(7)
+                       .limit(8)
 
     @categories = Category.all
 

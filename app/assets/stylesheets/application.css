@@ -28,9 +28,15 @@ form {
   text-align: center;
 }
 
+nav {
+  margin-bottom: 7%;
+}
+
+
 nav ul li ul li a {
   display: inline;
 }
+
 
 section .product{
   display: inline-flex;

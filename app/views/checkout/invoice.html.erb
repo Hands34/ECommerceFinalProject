@@ -1,0 +1,25 @@
+  <h2 class="title is-2"> Invoice</h2>
+<section class="cat">
+
+      <ul>
+          <li>
+            Cart 🛒
+            <% if cart.present? %>
+              <sup><%= cart.size %></sup>
+              <ul class="cart">
+                <% cart.each do |product| %>
+                  <li>
+                    <%= number_to_currency product.price / 100.0 %> - <%= product.product_name %> <%= link_to '❌', cart_path(product), method: :delete %>
+                  </li>
+                <% end %>
+                <% end %>
+          </li>
+        </ul>
+
+                <%= form_with url: checkout_create_path, remote: true do  %>
+                  <%= select_tag("province_id", options_from_collection_for_select(provinces_for_select, "id", "name", "tax_rate"))%>
+                  <%= button_tag "Buy Now" %>
+		            <% end %>
+
+
+</section>
