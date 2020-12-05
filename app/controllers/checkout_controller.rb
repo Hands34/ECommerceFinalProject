@@ -32,12 +32,13 @@ class CheckoutController < ApplicationController
 
     @session = Stripe::Checkout::Session.create(
       payment_method_types: ["card"],
-      success_url:          checkout_success_url + "?session_id={CHECKOUT_SESSION_ID}",
+      success_url:
+                            checkout_success_url + "?session_id={CHECKOUT_SESSION_ID}",
       cancel_url:           checkout_cancel_url,
       line_items:           line_items
     )
 
-    new_order = current_user.orders.create(total_price: sum, tax: sum * province.tax_rate,
+    new_order = current_user.orders.create(total_price: sum, tax: sum * province.tax_rate / 100,
       status: "Incomplete", payment_id: @session.id)
     logger.debug(new_order.errors.messages)
 
@@ -52,8 +53,15 @@ class CheckoutController < ApplicationController
     # We took the customers money
     @session = Stripe::Checkout::Session.retrieve(params[:session_id])
     @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
+    # @payment_status = Stripe::PaymentIntent.retrieve(@session.payment_status)
 
-    # new_order.status = "Completed" if @payment_intent == "paid"
+    logger.debug(@payment_intent)
+    order = Order.find_by(payment_id: @session.id)
+    order.status = "Completed"
+    order.save
+
+    # new_order.status = "Completed"
+    # new_order.status = "Completed" if @payment_intent.payment_status == "paid"
   end
 
   def cancel

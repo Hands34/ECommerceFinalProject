@@ -40,7 +40,8 @@ products.each do |p|
     query = URI.encode_www_form_component([product.product_name, category.category_name].join(","))
     downloaded_image = URI.open("https://source.unsplash.com/600x600/?#{query}")
     product.image.attach(io:       downloaded_image,
-                         filename: "m-#{[product.product_name, category.category_name].join('-')}.jpg")
+                         filename: "m-#{[product.product_name,
+                                         category.category_name].join('-')}.jpg")
 
     unless product.valid?
       puts "Invalid Product #{p['Name']}"
