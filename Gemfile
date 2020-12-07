@@ -38,6 +38,8 @@ gem 'rubocop-rails'
 
 gem 'stripe'
 
+gem 'pg'
+
 
 
 # Reduces boot times through caching; required in config/boot.rb
